@@ -1201,7 +1201,6 @@ class Flasktests(Modeltests):
         with user_set(fedocal.APP, user):
             output = self.app.get('/calendar_test/add/', follow_redirects=True)
             self.assertEqual(output.status_code, 200)
-            print output.data
             self.assertTrue(
                 '"errors">No calendar named calendar_test could be found</'
                 in output.data)
@@ -1262,8 +1261,10 @@ class Flasktests(Modeltests):
                                    follow_redirects=True)
             self.assertEqual(output.status_code, 200)
             self.assertTrue(
-                '<td>Time must be of type &#34;HH:MM&#34;</td>'
-                in output.data)
+                '<td>Time must be of type &HH:MM&#34;</td>' in output.data
+                or
+                '<td>Time must be of type "HH:MM"</td>' in output.data
+            )
 
             # Start time should have integer
             data = {
@@ -1280,8 +1281,10 @@ class Flasktests(Modeltests):
                                    follow_redirects=True)
             self.assertEqual(output.status_code, 200)
             self.assertTrue(
-                '<td>Time must be of type &#34;HH:MM&#34;</td>'
-                in output.data)
+                '<td>Time must be of type &HH:MM&#34;</td>' in output.data
+                or
+                '<td>Time must be of type "HH:MM"</td>' in output.data
+            )
 
             # End date earlier than the start date
             data = {
