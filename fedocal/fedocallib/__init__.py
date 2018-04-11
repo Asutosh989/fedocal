@@ -704,6 +704,7 @@ def add_meeting_to_vcal(ical, meeting, reminder=None):
         freq = meeting.recursion_frequency / 7
         recursion_ends = datetime.combine(
             meeting.recursion_ends, time(0)).replace(tzinfo=pytz.utc)
+        print recursion_ends
         newrule.rrule(
             rrule.rrule(
                 freq=rrule.WEEKLY,
