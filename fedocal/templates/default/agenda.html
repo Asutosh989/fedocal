@@ -262,11 +262,7 @@ else %}{{ location }}{% endif %}{% endblock %}
                   <div class="row_height"></div>
               </th>
               {% for meetings in full_day_meetings %}
-                {% if loop.first %}
-                {% set day_index = 0 %}
-                {% else %}
-                {% set day_index = day_index + 1 %}
-                {% endif %}
+                {% set day_index = loop.index %}
                 <td>
                     {% for meeting in meetings %}
                     <a class="event_blue meeting_{{ meeting.meeting_id }}"
