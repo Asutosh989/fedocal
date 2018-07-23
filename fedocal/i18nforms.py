@@ -24,7 +24,7 @@
  MA 02110-1301, USA.
 """
 
-from flask.ext import wtf
+import flask_wtf as wtf
 from fedocal.fedocal_babel import gettext, ngettext
 
 
